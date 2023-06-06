@@ -8,8 +8,16 @@ deck = [
     ['2c', '3c', '4c', '5c', '6c', '7c', '8c', '9c', 'Tc', 'Jc', 'Qc', 'Kc', 'Ac'], 
     ['2d', '3d', '4d', '5d', '6d', '7d', '8d', '9d', 'Td', 'Jd', 'Qd', 'Kd', 'Ad']]
 
+# Dictionary for card values
+values = {'2':2, '3':3, '4':4, '5':5, '6':6, '7':7, '8':8, '9':9, 'T':10, 'J':10, 'Q':10, 'K':10, 'A':11}
+
 # Draws cards for player
-card = random.sample([card for suit in deck for card in suit], 2)
-output = " ".join(card)
+cards = random.sample([card for suit in deck for card in suit], 2)
+
+# Total value...
+total_value = sum(values[card[0]] for card in cards)
+output = " ".join(cards)
+
 
 print(output)
+print(total_value)
