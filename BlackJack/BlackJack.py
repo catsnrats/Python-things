@@ -11,5 +11,5 @@ deck = [
 # Draws cards for player
 card = random.sample([card for suit in deck for card in suit], 2)
 output = " ".join(card)
-
+##
 print(output)
