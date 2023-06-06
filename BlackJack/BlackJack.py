@@ -14,10 +14,9 @@ values = {'2':2, '3':3, '4':4, '5':5, '6':6, '7':7, '8':8, '9':9, 'T':10, 'J':10
 # Draws cards for player
 cards = random.sample([card for suit in deck for card in suit], 2)
 
-# Total value...
+# Sum of values and output cleaning
 total_value = sum(values[card[0]] for card in cards)
 output = " ".join(cards)
 
-
-print(output)
-print(total_value)
+print(f"Cards: {output}")
+print(f"Total value: {total_value}")
