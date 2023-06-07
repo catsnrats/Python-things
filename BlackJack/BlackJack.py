@@ -29,20 +29,20 @@ while True:
         new_card = random.choice([card for suit in deck for card in suit])
         cards.append(new_card)
         total_value += values[new_card[0]]
-
-        print(new_card)
-        print("...updated hand", ' '.join(cards))
+        # Some output
+        print("New card: ", new_card)
+        print("Updated hand", ' '.join(cards))
         print("Updated total value", total_value)
 
         if total_value > 21:
             print("BUSTED")
             break
 
-        elif choice == 'stay':
-            break
+    elif choice == 'stay':
+        break
 
-        else:
-            print("Invalid choice...")
+    else:
+        print("Invalid choice. Write 'hit' or 'stay'.")
 
 print("Final hand", ' '.join(cards))
 print("Total value", total_value)
