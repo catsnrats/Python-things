@@ -20,3 +20,29 @@ output = " ".join(cards)
 
 print(f"Cards: {output}")
 print(f"Total value: {total_value}")
+
+# Loop to handle players choice...
+while True:
+    choice = input("Hit or Stay? ").lower()
+    if choice == 'hit':
+        # Draws a new card
+        new_card = random.choice([card for suit in deck for card in suit])
+        cards.append(new_card)
+        total_value += values[new_card[0]]
+
+        print(new_card)
+        print("...updated hand", ' '.join(cards))
+        print("Updated total value", total_value)
+
+        if total_value > 21:
+            print("BUSTED")
+            break
+
+        elif choice == 'stay':
+            break
+
+        else:
+            print("Invalid choice...")
+
+print("Final hand", ' '.join(cards))
+print("Total value", total_value)
