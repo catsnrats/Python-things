@@ -12,30 +12,41 @@ deck = [
 values = {'2':2, '3':3, '4':4, '5':5, '6':6, '7':7, '8':8, '9':9, 'T':10, 'J':10, 'Q':10, 'K':10, 'A':11}
 
 # Draws cards for player
-cards = random.sample([card for suit in deck for card in suit], 2)
+def deal_cards():
+    return random.sample([card for suit in deck for card in suit], 2)
 
-# Sum of values and output cleaning
-total_value = sum(values[card[0]] for card in cards)
-output = " ".join(cards)
+player_cards = deal_cards()
+dealer_cards = deal_cards()
 
-print(f"Cards: {output}")
-print(f"Total value: {total_value}")
+# Calculates hands total value
+def calculate_total(cards):
+    return sum(values[card[0]] for card in cards)
+
+player_value = calculate_total(player_cards)
+dealer_value = calculate_total(dealer_cards)
+player = " ".join(player_cards)
+
+print(f"Players cards: {player}")
+print(f"Total value: {player_value}")
+
+print(f"(Dealers visible card: {dealer_cards[0]})\n")
 
 # Loop to handle players choice...
 while True:
     choice = input("Hit or Stay? ").lower()
     if choice == 'hit':
         # Draws a new card
+        #new_card = deal_cards()
         new_card = random.choice([card for suit in deck for card in suit])
-        cards.append(new_card)
-        total_value += values[new_card[0]]
+        player_cards.append(new_card)
+        player_value += values[new_card[0]]
         # Some output
         print("New card: ", new_card)
-        print("Updated hand", ' '.join(cards))
-        print("Updated total value", total_value)
+        print("Updated hand", ' '.join(player_cards))
+        print("Updated total value", player_value)
 
-        if total_value > 21:
-            print("BUSTED")
+        if player_value > 21:
+            print("Player went over 21!")
             break
 
     elif choice == 'stay':
@@ -44,5 +55,29 @@ while True:
     else:
         print("Invalid choice. Write 'hit' or 'stay'.")
 
-print("Final hand", ' '.join(cards))
-print("Total value", total_value)
+# Dealer's turn
+while dealer_value <= 16:
+    new_card = random.choice([card for suit in deck for card in suit])
+    #new_card = deal_cards()
+    dealer_cards.append(new_card)
+    dealer_value = calculate_total(dealer_cards)
+    
+    print("\nDealer Draws:", new_card)
+
+# Find the winner...
+if dealer_value > 21:
+    print("Dealer went over 21!")
+    exit()
+if player_value == dealer_value:
+    print("EVEN")
+elif player_value <= 21 and player_value > dealer_value:
+    print("PLAYER WINS")
+elif dealer_value <= 21 and dealer_value > player_value:
+    print("DEALER WINS")
+
+print("\nDealers hand:", ' '.join(dealer_cards))
+print(f"Dealers value: {dealer_value} \n")
+
+print("Players final hand:", ' '.join(player_cards))
+print(f"Players value: {player_value}")
+
