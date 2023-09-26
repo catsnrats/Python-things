@@ -46,7 +46,7 @@ while True:
         print("Updated total value", player_value)
 
         if player_value > 21:
-            print("Player went over 21!")
+            print("\nPlayer went over 21!")
             break
 
     elif choice == 'stay':
@@ -55,7 +55,7 @@ while True:
     else:
         print("Invalid choice. Write 'hit' or 'stay'.")
 
-# Dealer's turn
+# Dealer's turn ### (CHECK THIS AGAIN) ###
 while dealer_value <= 16:
     new_card = random.choice([card for suit in deck for card in suit])
     #new_card = deal_cards()
@@ -69,11 +69,11 @@ if dealer_value > 21:
     print("Dealer went over 21!")
     exit()
 if player_value == dealer_value:
-    print("EVEN")
+    print("\nEVEN")
 elif player_value <= 21 and player_value > dealer_value:
-    print("PLAYER WINS")
+    print("\nPLAYER WINS")
 elif dealer_value <= 21 and dealer_value > player_value:
-    print("DEALER WINS")
+    print("\nDEALER WINS")
 
 print("\nDealers hand:", ' '.join(dealer_cards))
 print(f"Dealers value: {dealer_value} \n")
