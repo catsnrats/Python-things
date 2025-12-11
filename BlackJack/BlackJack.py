@@ -20,7 +20,15 @@ dealer_cards = deal_cards()
 
 # Calculates hands total value
 def calculate_total(cards):
-    return sum(values[card[0]] for card in cards)
+    total_value = sum(values[card[0]] for card in cards)
+
+    # Check for Aces and adjust if necessary
+    num_aces = cards.count('Ac') + cards.count('Ad') + cards.count('Ah') + cards.count('As')
+    while num_aces > 0 and total_value > 21:
+        total_value -= 10 # Change the value of an Ace from 11 to 1
+        num_aces -= 1
+    return total_value 
+    # return sum(values[card[0]] for card in cards)
 
 player_value = calculate_total(player_cards)
 dealer_value = calculate_total(dealer_cards)
