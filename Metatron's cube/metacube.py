@@ -31,14 +31,14 @@ def draw_metatrons_cube():
 
     # 2. Inner hexagon (6 circles)
     for i in range(6):
-        angle = math.radians(i * 60)
+        angle = math.radians(i * 60 + 90)
         x = distance * math.cos(angle)
         y = distance * math.sin(angle)
         centers.append((x, y))
 
     # 3. Outer hexagon (6 circles)
     for i in range(6):
-        angle = math.radians(i * 60)
+        angle = math.radians(i * 60 + 90)
         x = 2 * distance * math.cos(angle)
         y = 2 * distance * math.sin(angle)
         centers.append((x, y))
